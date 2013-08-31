@@ -1,0 +1,96 @@
+\documentclass[a4paper,10pt,twocolumn]{article}
+\setlength{\columnsep}{1cm}
+\usepackage[margin=0.5in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[figurename=Figura,justification=centering,font=small,labelfont=bf]{caption}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+
+%opening
+\title{\textbf{Laboratorio de Control Automático} \\ \textbf{Proyecto corto 1: motor CD}}
+\author{Ronny Jimenez Araya \hspace*{1cm} Julian Mateus Vargas \hspace*{1cm} David Ramirez Arroyo\\
+\\Profesor: Eduardo Interiano}
+\date{31 Agosto 2013}
+
+\begin{document}
+\maketitle
+\renewcommand{\figurename}{Figura}
+
+\begin{abstract}
+
+The following document shows the experimental results obtained during the session of measurements regarding the 'short project 1' 
+of Laboratorio de Control Automatico, of the Electronic Engineer career at Instituto Tecnologico de Costa Rica, 
+and the way those were obtained. 
+\end{abstract}
+
+\section{Introducción}
+
+El presente documento resume las mediciones hechas como parte del proyecto corto numero 1, del Laboratorio de Control Automático.
+Dicho proyecto consistía en la obtención del modelo experimental de una planta, la cual era facilitada por el profesor.\\
+
+En la siguiente imagen se muestra la planta en una fotografia frontal de la misma \footnote{La fotografia fue facilitada por el profesor}.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=8cm]{/home/rojiar/TEC/Motor_CD.png}
+\caption{Esquema de velocidad angular y torque del motor CD utilizado using \textit{\LaTeX}.}
+\label{Esquema de velocidad angular y torque del motor CD utilizado}
+\end{figure}
+
+Como se muestra en la anterior figura, la planta estaba formada por un motor CD, el cual estaba conformado por el dispositivo electromecánico,
+de símbolo M, un tacometro de símbolo TG, y otros elementos perifericos que que dan funcionalidades extra a la placa que por el momento no se 
+utilizaran.\\
+
+Para la obtención del modelo experimental de este dispositivo, se aplica una señal de tensión eléctrica en la armadura del motor y se observa la 
+respuesta que tiene en velocidad, y torque dicho dispositivo. \\ \\
+
+
+\section{Equipo y materiales utilizados}
+
+1 Osciloscopio marca Agilent Infinii Vision 2000x
+\\Puntas de prueba
+\\1 Sistema de velocidad angular hps5130
+
+
+
+\section{Resultados Experimentales}
+
+En primera instancia, para la medicion de la respuesta de velocidad del motor, se aplico una senal de entrada cuadrada y la respuesta que se obtuvo 
+se muestra en la siguiente figura.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=9cm]{/home/rojiar/Pictures/exp1.png}
+\caption{Torque del motor CD ante un estimulo}
+\label{Torque del motor CD ante un estimulo}
+\end{figure}
+
+En la anterior figura, se muestra en amarillo la entrada, y en verde la salida como la velocidad del motor.
+\\\\
+Segun los datos expuestos en la placa por cada 2V de tensión electrics el motor obtiene una velocidad angular de 1000 rpm, si se observa
+adecuadamente la Figura 2 se puede concluir que la velocidad en estado estable del motor es aproximadamente 6000 rpm.
+\\\\
+Seguidamente de la medicions de la velocidad, se realizo la de torque del motor. La respuesta que se obtuvo se muestra en la siguiente imagen.
+\newpage
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=9cm]{/home/rojiar/Pictures/exp_corri.png}
+\caption{Respuesta de velocidad del motor CD}
+\label{Respuesta de velocidad del motor CD}
+\end{figure}
+
+Si se realiza el mismo analisis que con la tensión y se determina que 1V de tensión electricc equivale a 100 mA de corriente que fluye en el 
+motor. Observando la imagen se puede determinar que el pico de corriente ocurre cuando el motor se encuentra sin movimiento angular, y se imprime
+en el mismo la senals rectangular.\\
+
+Segun la imagen entonces se puede concluir que el maximo de corriente es de aproximadamente 150 mA.\\
+
+Una vez que se obtuvieron las graficas mostradas, y se guardo adecuadamente los datos en formato .csv, se procede a la verificacion de los mismos 
+mediante las herramientas computacionales de Microsoft Office Excel y Mathworks MatLab.\\
+
+Se realiza en Excel, un bosquejo de los datos experimentales para cada medicion realizada, tanto de tensión como de corriente, y se procede a 
+la importacion de los mismos en el programa MatLab. \\
+Una vez que estos se importan adecuadamente se ejecuta el comando de identificacion de sistemas de control, conocido como ``ident''. 
+
+\end{document}
