@@ -5,6 +5,11 @@
 \usepackage[figurename=Figura,justification=centering,font=small,labelfont=bf]{caption}
 \usepackage{graphicx}
 \usepackage{epstopdf}
+\usepackage{fancyhdr}
+%\pagestyle{fancy}
+%\fancyhead{}
+%\fancyfoot[C]{Documento hecho con \textit{\LaTeX}.}
+
 
 %opening
 \title{\textbf{Laboratorio de Control Automático} \\ \textbf{Proyecto corto 1: motor CD}}
@@ -33,29 +38,27 @@ En la siguiente imagen se muestra la planta en una fotografia frontal de la mism
 \begin{figure}[h!]
 \centering
 \includegraphics[width=8cm]{/home/rojiar/TEC/Motor_CD.png}
-\caption{Esquema de velocidad angular y torque del motor CD utilizado using \textit{\LaTeX}.}
+\caption{Esquema de velocidad angular y torque del motor CD.}
 \label{Esquema de velocidad angular y torque del motor CD utilizado}
 \end{figure}
 
 Como se muestra en la anterior figura, la planta estaba formada por un motor CD, el cual estaba conformado por el dispositivo electromecánico,
-de símbolo M, un tacometro de símbolo TG, y otros elementos perifericos que que dan funcionalidades extra a la placa que por el momento no se 
+de símbolo M, un tacometro de símbolo TG, y otros elementos periféricos que que dan funcionalidades extra a la placa que por el momento no se 
 utilizaran.\\
 
 Para la obtención del modelo experimental de este dispositivo, se aplica una señal de tensión eléctrica en la armadura del motor y se observa la 
 respuesta que tiene en velocidad, y torque dicho dispositivo. \\ \\
 
-
 \section{Equipo y materiales utilizados}
 
 1 Osciloscopio marca Agilent Infinii Vision 2000x
-\\Puntas de prueba
 \\1 Sistema de velocidad angular hps5130
-
+\\Puntas de Prueba
 
 
 \section{Resultados Experimentales}
 
-En primera instancia, para la medicion de la respuesta de velocidad del motor, se aplico una senal de entrada cuadrada y la respuesta que se obtuvo 
+En primera instancia, para la medición de la respuesta de velocidad del motor, se aplico una señal de entrada cuadrada y la respuesta que se obtuvo 
 se muestra en la siguiente figura.
 
 \begin{figure}[h!]
@@ -67,10 +70,10 @@ se muestra en la siguiente figura.
 
 En la anterior figura, se muestra en amarillo la entrada, y en verde la salida como la velocidad del motor.
 \\\\
-Segun los datos expuestos en la placa por cada 2V de tensión electrics el motor obtiene una velocidad angular de 1000 rpm, si se observa
+Según los datos expuestos en la placa por cada 2V de tensión eléctrica el motor obtiene una velocidad angular de 1000 rpm, si se observa
 adecuadamente la Figura 2 se puede concluir que la velocidad en estado estable del motor es aproximadamente 6000 rpm.
 \\\\
-Seguidamente de la medicions de la velocidad, se realizo la de torque del motor. La respuesta que se obtuvo se muestra en la siguiente imagen.
+Seguidamente de la medición de la velocidad, se realizo la de torque del motor. La respuesta que se obtuvo se muestra en la siguiente imagen.
 \newpage
 
 \begin{figure}[h]
@@ -80,17 +83,120 @@ Seguidamente de la medicions de la velocidad, se realizo la de torque del motor.
 \label{Respuesta de velocidad del motor CD}
 \end{figure}
 
-Si se realiza el mismo analisis que con la tensión y se determina que 1V de tensión electricc equivale a 100 mA de corriente que fluye en el 
+Si se realiza el mismo análisis que con la tensión y se determina que 1V de tensión eléctrica equivale a 100 mA de corriente que fluye en el 
 motor. Observando la imagen se puede determinar que el pico de corriente ocurre cuando el motor se encuentra sin movimiento angular, y se imprime
-en el mismo la senals rectangular.\\
+en el mismo la señales rectangular.\\
 
-Segun la imagen entonces se puede concluir que el maximo de corriente es de aproximadamente 150 mA.\\
+Según la imagen entonces se puede concluir que el máximo de corriente es de aproximadamente 150 mA.\\
 
-Una vez que se obtuvieron las graficas mostradas, y se guardo adecuadamente los datos en formato .csv, se procede a la verificacion de los mismos 
+Una vez que se obtuvieron las gráficas mostradas, y se guardo adecuadamente los datos en formato .csv, se procede a la verificación de los mismos 
 mediante las herramientas computacionales de Microsoft Office Excel y Mathworks MatLab.\\
 
-Se realiza en Excel, un bosquejo de los datos experimentales para cada medicion realizada, tanto de tensión como de corriente, y se procede a 
-la importacion de los mismos en el programa MatLab. \\
-Una vez que estos se importan adecuadamente se ejecuta el comando de identificacion de sistemas de control, conocido como ``ident''. 
+Se realiza en Excel, un bosquejo de los datos experimentales para cada medición realizada, tanto de tensión como de corriente, y se procede a 
+la importación de los mismos en el programa MatLab. \\
+
+Una vez que estos se importan adecuadamente se ejecuta el comando de identificación de sistemas de control, conocido como ``ident'', el cual 
+servirá para la obtención de la función de transferencia y sus parámetros.\\
+
+En este punto y según la guía del profesor, se obtuvo un error de ``offset'' hacia abajo (negativo) en las gráficas obtenidas producto de los amplificadores utilizados en
+las salidas de medición, por lo que se procede a determinar mediante Excel la magnitud del offset y posteriormente sumar esta cantidad para ``eliminarlo'' 
+y que no tenga efecto en el modelo a obtener.\\
+
+Con lo anterior, realizado, se procede a importar los datos al ident como funciones del tiempo, y a su gráfica, tanto para la tensión eléctrica 
+como para la corriente. Las figuras se muestran a continuación.\\
+
+\newpage
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=9cm]{/home/rojiar/Pictures/Proyecto_Corto_1/EntradasySalidasexperimentalesgraficadasenMatLab.png}
+\caption{Entrada y respuesta de velocidad del motor CD}
+\label{Entrada y respuesta de velocidad del motor CD}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=9cm]{/home/rojiar/Pictures/Proyecto_Corto_1/Entradassalidasexperimentalesdecorriente.png}
+\caption{Entrada y respuesta de corriente del motor CD}
+\label{Entrada y respuesta de corriente del motor CD}
+\end{figure}
+
+Una vez que lo anterior se hizo, se procede a determinar el modelo experimental de la planta utilizando la opción ``process models'' y determinar
+el tipo de sistema y que es, así como los polos, ceros, integrados y retardos que se le agregarían al sistema para aumentar su exactitud con respecto
+a las mediciones realizadas.\\
+
+Para el caso de la tensión eléctrica y su forma de onda de salida, se puede observar que el sistema debería de comportarse adecuadamente con unicamente
+un polo, lo que da como resultado el siguiente modelo obtenido en la figura 6. Cabe aclarar que solo se establece este modelo, debido a la suposición inicial de un único
+polo y de que su resultado da un porcentaje de 93.58 con respecto a la los datos obtenidos.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=9cm]{/home/rojiar/Pictures/Proyecto_Corto_1/ModelOutputP1.png}
+\caption{Salida de la herramienta Model Output del ident de MatLab para la tension eléctrica}
+\label{Salida de la herramienta Model Output del ident de MatLab para la tension electrica}
+\end{figure}
+
+\newpage
+
+Para el caso de la corriente eléctrica al ver la forma de la curva no se puede determinar claramente que tipo de modelo podría aplicarse en este caso,
+por lo que en este se prueban diferentes opciones de modelos, y se determina que el mejor modelo corresponde a utilizar 1 cero, y 1 polo, lo que da
+un porcentaje de exactitud del 87.13 por ciento. La imagen de dicha aproximación se muestra a continuación.
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=9cm]{/home/rojiar/Pictures/Proyecto_Corto_1/ModelOutputcorriente.png}
+\caption{Salida de la herramienta Model Output del ident de MatLab para la corriente eléctrica}
+\label{Salida de la herramienta Model Output del ident de MatLab para la corriente electrica}
+\end{figure}
+
+Posteriormente, se exportan los datos de los modelos al ``workspace'' de MatLab para la obtención del modelo experimental con sus valores reales
+y con las ganancias adecuadas. Se utiliza la herramienta de MatLab zpk (zero-pole-gain) para obtener la función de transferencia deseada.\\
+
+Para el caso de la tensión eléctrica la salida del zpk da como resultado la imagen siguiente.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=9cm]{/home/rojiar/Pictures/Proyecto_Corto_1/zpktension.png}
+\caption{Función de transferencia del Motor CD para el caso de la tensión eléctrica}
+\label{Funcion de transferencia del Motor CD para el caso de la tension electrica}
+\end{figure}
+
+Con lo anterior se establece entonces que la función de transferencia para la tensión viene dada por la siguiente ecuación:
+
+
+\begin{center}
+$$
+ H(s)_V = \frac{13.4596}{(s+10.9)}
+$$  
+\end{center}
+
+\newpage
+Para el caso de la corriente eléctrica entonces la salida de la herramienta zpk muestra la siguiente salida.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=9cm]{/home/rojiar/Pictures/Proyecto_Corto_1/zpkcorriente.png}
+\caption{Función de transferencia del Motor CD para el caso de la corriente eléctrica}
+\label{Funcion de transferencia del Motor CD para el caso de la corriente electrica}
+\end{figure}
+
+Con lo cual la función de transferencia para la corriente se expresa de la siguiente manera:
+
+\begin{center}
+$$
+ H(s)_I = \frac{0.63884 (s+0.4652)}{(s+7.966)}
+$$  
+\end{center}
+
+De esta manera se obtuvo las funciones de transferencia del sistema, tanto para tensión como para corriente.
+
+\section{Referencias}
+
+http://www.ie.itcr.ac.cr/einteriano/control/Laboratorio
+http://www.mathworks.com/products/matlab\\
+http://www.math.ufl.edu/help/matlab-tutorial
+
+
 
 \end{document}
