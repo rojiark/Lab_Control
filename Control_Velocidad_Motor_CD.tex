@@ -52,138 +52,134 @@ En la siguiente imagen se muestra la planta en una fotografia frontal de la mism
 
 \section{Resultados Experimentales}
 
-En primera instancia, para la medición de la respuesta de velocidad del motor, se aplico una señal de entrada cuadrada y la respuesta que se obtuvo 
-se muestra en la siguiente figura.
+En primera instancia, lo que se realizo fue un analisis numerico utilizando la herramienta computacional MatLab, para una funcion de 
+transferencia dada, la cual corresponde al motor CD analizado en el proyecto corto numero 1. Dicha funcion de transferencia se muestra
+acontinuacion. 
+
+\begin{center}
+$$
+ Motor(s) = \frac{30.38}{(s+24)}
+$$
+\end{center}
+
+Con esta funcion entonces se utilizo la herramienta c2d de MatLab y la de \textit{SISOTOOL} de \textbf{MatLab} con el fin de discretizar la planta y
+obtener el lugar de las raices de la misma, y con esto disenar un regulador PI con la herramienta de \textit{Control and Estimation Tools} 
+del mismo paquete de \textbf{MatLab}.\\
+
+Como se sabe de antemano que el diseno debe de estar implementado en la forma PI, entonces se establece que el diseno debe de tener 
+un polo y un cero. Al haber un integrador entonces el polo debe de centrarse en z=1, ademas existe un requisito de un tiempo de estabilizacion
+del 2\% de aproximadamente 150ms.\\
+
+Una vez que se define esto, entonces debe de escogerse un valor apropiado para el cero el cual deberia de estar en los alrededores del polo
+dominante en lazo abierto, y que produzca una ganancia adecuada segun el instructivo del laboratorio.\\
+
+Para esto entonces se utiliza la herramienta de \textit{LTI Viewer for SISO Design Task} por medio de la cual se puede ajustar graficamente
+el valor del cero y la ganancia, ya que se mueve el lugar del cero deseado en la figura del lugar de las raices, y se muestra en la figura de
+la respuesta al escalon lo que sucede con los tiempos de estabilizacion.\\
+
+Asi entonces con la herramienta de \textit{Control and Estimation Tools} se obtiene el valor exacto del cero y de la ganancia, para dar como
+resultado la siguiente figura de respuesta al escalon.
+
+\newpage
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=9cm]{/home/rojiar/Pictures/exp1.png}
-\caption{Torque del motor CD ante un estimulo}
-\label{Torque del motor CD ante un estimulo}
+\includegraphics[width=9cm]{/home/rojiar/Pictures/LabControl/LTIViewerforSISODesignTask.png}
+\caption{Respuesta al escalon obtenida}
+\label{Respuesta al escalon obtenida}
 \end{figure}
 
-En la anterior figura, se muestra en amarillo la entrada, y en verde la salida como la velocidad del motor.
-\\\\
+Como figura extra se muestran los valores exactos del polo y el cero que dio como resultado la respuesta de la figura 2
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=9cm]{/home/rojiar/Pictures/LabControl/ControlandEstimationTools.png}
+\caption{Valores del polo y del cero, asi como la ganancia del sistema a controlar}
+\label{Valores del polo y del cero, asi como la ganancia del sistema a controlar}
+\end{figure}
+
+En la Figura 4 se puede observar el lugar de las raices obtenido para los valores anteriores
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=9cm]{/home/rojiar/Pictures/LabControl/SISODESIGNFORSISODESIGNTASK.png}
+\caption{Lugar de las raices para el motor CD}
+\label{Lugar de las raices para el motor CD}
+\end{figure}
+
+Con esto entonces se obtiene la siguiente ecuacion en tiempo discreto
+
+\begin{center}
+$$
+ Motor(z) = 0.96899 \ldotp \frac{z-0.9}{(z-1)}
+$$
+\end{center}
+
+\newpage
+
+Con lo anterior se realiza la descomposicion de la ecuacion en fracciones utilizando la herramienta de \textit{residuez} con la cual tiene
+la sintaxis [R,P,K] = residuez(B,A) a los cuales se le asigna las literales de R = ki, P = p y K = Kp. Los valores obtenidos con la
+herramienta fueron:
+
+\begin{center}
+$$
+  k_{i} = 0.0969
+$$
+\end{center}
+
+\begin{center}
+$$
+  p = 1
+$$
+\end{center}
+
+\begin{center}
+$$
+  k_{p} = 0.8721
+$$
+\end{center}
+
+\begin{table}
+\centering
+\includegraphics[width=9cm]{/home/rojiar/Pictures/LabControl/ControlandEstimationTools.png}
+\caption{Valores del polo y del cero, asi como la ganancia del sistema a controlar}
+\label{Valores del polo y del cero, asi como la ganancia del sistema a controlar}
+\end{table}
+
+
 Según los datos expuestos en la placa por cada 2V de tensión eléctrica el motor obtiene una velocidad angular de 1000 rpm, si se observa
-adecuadamente la Figura 2 se puede concluir que la velocidad en estado estable del motor es aproximadamente 6000 rpm.
+adecuadamente la Figura 2 se puede concluir que la velocidad en estado estable del motor es aproximadamente 4000 rpm, debido a que el pico
+es de 2v.
 \\\\
-Seguidamente de la medición de la velocidad, se realizo la de torque del motor. La respuesta que se obtuvo se muestra en la siguiente imagen.
+Seguidamente de dicha medicion, se realizo la misma pero ahora .
 \newpage
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=9cm]{/home/rojiar/Pictures/exp_corri.png}
+\includegraphics[width=9cm]{/home/rojiar/Pictures//LabControl/scope_r.png}
 \caption{Respuesta de velocidad del motor CD}
 \label{Respuesta de velocidad del motor CD}
 \end{figure}
 
-Si se realiza el mismo análisis que con la tensión y se determina que 1V de tensión eléctrica equivale a 100 mA de corriente que fluye en el 
-motor. Observando la imagen se puede determinar que el pico de corriente ocurre cuando el motor se encuentra sin movimiento angular, y se imprime
-en el mismo la señales rectangular.\\
 
-Según la imagen entonces se puede concluir que el máximo de corriente es de aproximadamente 150 mA.\\
-
-Una vez que se obtuvieron las gráficas mostradas, y se guardo adecuadamente los datos en formato .csv, se procede a la verificación de los mismos 
-mediante las herramientas computacionales de Microsoft Office Excel y Mathworks MatLab.\\
-
-Se realiza en Excel, un bosquejo de los datos experimentales para cada medición realizada, tanto de tensión como de corriente, y se procede a 
-la importación de los mismos en el programa MatLab. \\
-
-Una vez que estos se importan adecuadamente se ejecuta el comando de identificación de sistemas de control, conocido como ``ident'', el cual 
-servirá para la obtención de la función de transferencia y sus parámetros.\\
-
-En este punto y según la guía del profesor, se obtuvo un error de ``offset'' hacia abajo (negativo) en las gráficas obtenidas producto de los amplificadores utilizados en
-las salidas de medición, por lo que se procede a determinar mediante Excel la magnitud del offset y posteriormente sumar esta cantidad para ``eliminarlo'' 
-y que no tenga efecto en el modelo a obtener.\\
-
-Con lo anterior, realizado, se procede a importar los datos al ident como funciones del tiempo, y a su gráfica, tanto para la tensión eléctrica 
-como para la corriente. Las figuras se muestran a continuación.\\
 
 \newpage
 
-\begin{figure}[h]
-\centering
-\includegraphics[width=9cm]{/home/rojiar/Pictures/Proyecto_Corto_1/EntradasySalidasexperimentalesgraficadasenMatLab.png}
-\caption{Entrada y respuesta de velocidad del motor CD}
-\label{Entrada y respuesta de velocidad del motor CD}
-\end{figure}
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=9cm]{/home/rojiar/Pictures/Proyecto_Corto_1/Entradassalidasexperimentalesdecorriente.png}
-\caption{Entrada y respuesta de corriente del motor CD}
-\label{Entrada y respuesta de corriente del motor CD}
-\end{figure}
-
-Una vez que lo anterior se hizo, se procede a determinar el modelo experimental de la planta utilizando la opción ``process models'' y determinar
-el tipo de sistema y que es, así como los polos, ceros, integrados y retardos que se le agregarían al sistema para aumentar su exactitud con respecto
-a las mediciones realizadas.\\
-
-Para el caso de la tensión eléctrica y su forma de onda de salida, se puede observar que el sistema debería de comportarse adecuadamente con unicamente
-un polo, lo que da como resultado el siguiente modelo obtenido en la figura 6. Cabe aclarar que solo se establece este modelo, debido a la suposición inicial de un único
-polo y de que su resultado da un porcentaje de 93.58 con respecto a la los datos obtenidos.
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=9cm]{/home/rojiar/Pictures/Proyecto_Corto_1/ModelOutputP1.png}
-\caption{Salida de la herramienta Model Output del ident de MatLab para la tension eléctrica}
-\label{Salida de la herramienta Model Output del ident de MatLab para la tension electrica}
-\end{figure}
-
-\newpage
-
-Para el caso de la corriente eléctrica al ver la forma de la curva no se puede determinar claramente que tipo de modelo podría aplicarse en este caso,
-por lo que en este se prueban diferentes opciones de modelos, y se determina que el mejor modelo corresponde a utilizar 1 cero, y 1 polo, lo que da
-un porcentaje de exactitud del 87.13 por ciento. La imagen de dicha aproximación se muestra a continuación.
 
 
-\begin{figure}[h]
-\centering
-\includegraphics[width=9cm]{/home/rojiar/Pictures/Proyecto_Corto_1/ModelOutputcorriente.png}
-\caption{Salida de la herramienta Model Output del ident de MatLab para la corriente eléctrica}
-\label{Salida de la herramienta Model Output del ident de MatLab para la corriente electrica}
-\end{figure}
 
-Posteriormente, se exportan los datos de los modelos al ``workspace'' de MatLab para la obtención del modelo experimental con sus valores reales
-y con las ganancias adecuadas. Se utiliza la herramienta de MatLab zpk (zero-pole-gain) para obtener la función de transferencia deseada.\\
 
-Para el caso de la tensión eléctrica la salida del zpk da como resultado la imagen siguiente.
+
+
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=9cm]{/home/rojiar/Pictures/Proyecto_Corto_1/zpktension.png}
-\caption{Función de transferencia del Motor CD para el caso de la tensión eléctrica}
-\label{Funcion de transferencia del Motor CD para el caso de la tension electrica}
-\end{figure}
-
-Con lo anterior se establece entonces que la función de transferencia para la tensión viene dada por la siguiente ecuación:
-
-
-\begin{center}
-$$
- H(s)_V = \frac{13.4596}{(s+10.9)}
-$$  
-\end{center}
-
-\newpage
-Para el caso de la corriente eléctrica entonces la salida de la herramienta zpk muestra la siguiente salida.
-
-\begin{figure}[h!]
-\centering
-\includegraphics[width=9cm]{/home/rojiar/Pictures/Proyecto_Corto_1/zpkcorriente.png}
+\includegraphics[width=9cm]{/home/rojiar/Pictures/LabControl/scope_r.png}
 \caption{Función de transferencia del Motor CD para el caso de la corriente eléctrica}
 \label{Funcion de transferencia del Motor CD para el caso de la corriente electrica}
 \end{figure}
 
-Con lo cual la función de transferencia para la corriente se expresa de la siguiente manera:
 
-\begin{center}
-$$
- H(s)_I = \frac{0.63884 (s+0.4652)}{(s+7.966)}
-$$  
-\end{center}
-
-De esta manera se obtuvo las funciones de transferencia del sistema, tanto para tensión como para corriente.
 
 \section{Referencias}
 
