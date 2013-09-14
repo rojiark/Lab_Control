@@ -3,6 +3,7 @@
 \usepackage[margin=0.5in]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage[figurename=Figura,justification=centering,font=small,labelfont=bf]{caption}
+\captionsetup[table]{name=Tabla}
 \usepackage{graphicx}
 \usepackage{epstopdf}
 \usepackage{fancyhdr}
@@ -31,15 +32,16 @@ and the way those were obtained.
 \section{Introducción}
 
 El presente documento resume los resultados obtenidos como parte del proyecto corto numero 2, del Laboratorio de Control Automático.
-Dicho proyecto consistía en realizar el control mediante la tecnica de PI de una planta, la cual era facilitada por el profesor.\\
+Dicho proyecto consistía en realizar el control mediante, la técnica de PI, de una planta, especificamente un motor CD, 
+la cual era facilitada por el profesor.\\
 
-En la siguiente imagen se muestra la planta en una fotografia frontal de la misma \footnote{La fotografia fue facilitada por el profesor}.
+En la siguiente imagen se muestra la planta en una fotografía frontal de la misma \footnote{La fotografía fue facilitada por el profesor}.
 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=8cm]{/home/rojiar/Pictures/LabControl/Motor_CD.png}
-\caption{Esquema de velocidad angular y torque del motor CD.}
-\label{Esquema de velocidad angular y torque del motor CD utilizado}
+\caption{Esquema de velocidad angular hps5130.}
+\label{Esquema de velocidad angular hps5130}
 \end{figure}
 
 \section{Equipo y materiales utilizados}
@@ -47,14 +49,14 @@ En la siguiente imagen se muestra la planta en una fotografia frontal de la mism
 1 Osciloscopio marca Agilent Infinii Vision 2000x
 \\1 Sistema de velocidad angular hps5130
 \\Puntas de Prueba
-\\Sistema con microcontrolador y potenciometros
+\\Sistema con microcontrolador y potenciómetros
 
 
 \section{Resultados Experimentales}
 
-En primera instancia, lo que se realizo fue un analisis numerico utilizando la herramienta computacional MatLab, para una funcion de 
-transferencia dada, la cual corresponde al motor CD analizado en el proyecto corto numero 1. Dicha funcion de transferencia se muestra
-acontinuacion. 
+En primera instancia, lo que se realizo fue un análisis numérico utilizando la herramienta computacional \textbf{MatLab}, para una función de 
+transferencia dada, la cual corresponde al motor CD analizado en el proyecto corto numero 1. Dicha función de transferencia se muestra
+a continuación. 
 
 \begin{center}
 $$
@@ -62,30 +64,30 @@ $$
 $$
 \end{center}
 
-Con esta funcion entonces se utilizo la herramienta c2d de MatLab y la de \textit{SISOTOOL} de \textbf{MatLab} con el fin de discretizar la planta y
-obtener el lugar de las raices de la misma, y con esto disenar un regulador PI con la herramienta de \textit{Control and Estimation Tools} 
+Con esta función entonces se utilizo la herramienta c2d de MatLab y la de \textit{SISOTOOL} de \textbf{MatLab} con el fin de discretizar la planta y
+obtener el lugar de las raíces de la misma, y con esto diseñar un regulador PI con la herramienta de \textit{Control and Estimation Tools} 
 del mismo paquete de \textbf{MatLab}.\\
 
-Como se sabe de antemano que el diseno debe de estar implementado en la forma PI, entonces se establece que el diseno debe de tener 
-un polo y un cero. Al haber un integrador entonces el polo debe de centrarse en z=1, ademas existe un requisito de un tiempo de estabilizacion
+Como se sabe de antemano que el diseño debe de estar implementado en la forma PI, entonces se establece que el diseño debe de tener 
+un polo y un cero. Al haber un integrador entonces el polo debe de centrarse en z=1, además existe un requisito de un tiempo de estabilización
 del 2\% de aproximadamente 150ms.\\
 
-Una vez que se define esto, entonces debe de escogerse un valor apropiado para el cero el cual deberia de estar en los alrededores del polo
-dominante en lazo abierto, y que produzca una ganancia adecuada segun el instructivo del laboratorio.\\
+Una vez que se define esto, entonces debe de escogerse un valor apropiado para el cero el cual debería de estar en los alrededores del polo
+dominante en lazo abierto, y que produzca una ganancia adecuada según el instructivo del laboratorio.\\
 
-Para esto entonces se utiliza la herramienta de \textit{LTI Viewer for SISO Design Task} por medio de la cual se puede ajustar graficamente
-el valor del cero y la ganancia, ya que se mueve el lugar del cero deseado en la figura del lugar de las raices, y se muestra en la figura de
-la respuesta al escalon lo que sucede con los tiempos de estabilizacion.\\
+Para esto entonces se utiliza la herramienta de \textit{LTI Viewer for SISO Design Task} por medio de la cual se puede ajustar gráficamente
+el valor del cero y la ganancia, ya que se mueve el lugar del cero deseado en la figura del lugar de las raíces, y se muestra en la figura de
+la respuesta al escalón lo que sucede con los tiempos de estabilización.\\
 
-Asi entonces con la herramienta de \textit{Control and Estimation Tools} se obtiene el valor exacto del cero y de la ganancia, para dar como
-resultado la siguiente figura de respuesta al escalon.
+Así entonces con la herramienta de \textit{Control and Estimation Tools} se obtiene el valor exacto del cero y de la ganancia, para dar como
+resultado la siguiente figura de respuesta al escalón.
 
 \newpage
 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=9cm]{/home/rojiar/Pictures/LabControl/LTIViewerforSISODesignTask.png}
-\caption{Respuesta al escalon obtenida}
+\caption{Respuesta al escalón obtenida}
 \label{Respuesta al escalon obtenida}
 \end{figure}
 
@@ -98,27 +100,27 @@ Como figura extra se muestran los valores exactos del polo y el cero que dio com
 \label{Valores del polo y del cero, asi como la ganancia del sistema a controlar}
 \end{figure}
 
-En la Figura 4 se puede observar el lugar de las raices obtenido para los valores anteriores
+En la Figura 4 se puede observar el lugar de las raíces obtenido para los valores anteriores
 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=9cm]{/home/rojiar/Pictures/LabControl/SISODESIGNFORSISODESIGNTASK.png}
-\caption{Lugar de las raices para el motor CD}
-\label{Lugar de las raices para el motor CD}
+\caption{Lugar de las raíces para la planta}
+\label{Lugar de las raices para la planta}
 \end{figure}
 
-Con esto entonces se obtiene la siguiente ecuacion en tiempo discreto
+Con esto entonces se obtiene la siguiente ecuación en tiempo discreto
 
 \begin{center}
 $$
- Motor(z) = 0.96899 \ldotp \frac{z-0.9}{(z-1)}
+ Motor(z) = 0.96899 \frac{z-0.9}{(z-1)}
 $$
 \end{center}
 
 \newpage
 
-Con lo anterior se realiza la descomposicion de la ecuacion en fracciones utilizando la herramienta de \textit{residuez} con la cual tiene
-la sintaxis [R,P,K] = residuez(B,A) a los cuales se le asigna las literales de R = ki, P = p y K = Kp. Los valores obtenidos con la
+Con lo anterior se realiza la descomposición de la ecuación en fracciones utilizando la herramienta de \textit{residuez} la cual tiene
+la sintaxis [R,P,K] = residuez(B,A), a los cuales se le asigna las literales de R = ki, P = p y K = Kp. Los valores obtenidos con la
 herramienta fueron:
 
 \begin{center}
@@ -139,20 +141,54 @@ $$
 $$
 \end{center}
 
-\begin{table}
+Para obtener el valor adecuado en términos de tensión eléctrica que debe de tener equivalentemente las constantes se utiliza la siguiente tabla.
+
+\begin{table}[h]
+\caption{Relación existente entre los potenciómetros de ajuste y la tensión medida en el voltímetro}
 \centering
-\includegraphics[width=9cm]{/home/rojiar/Pictures/LabControl/ControlandEstimationTools.png}
-\caption{Valores del polo y del cero, asi como la ganancia del sistema a controlar}
-\label{Valores del polo y del cero, asi como la ganancia del sistema a controlar}
+\begin{tabular}{c | c | c}
+\hline
+  Constante & Umax[V] & Kxmax \\
+  \hline
+  kp & 5 & 1 \\
+  \hline
+  ki & 5 & 0.2 \\
+  \hline
+\end{tabular}
+\label{Relacion existente entre los potenciometros de ajuste y la tension medida en el multimetro}
 \end{table}
 
+Con esta tabla entonces se encuentra que los valores de tensión eléctrica que debe de medir el voltímetro para cada caso serian los siguientes:\\
 
-Según los datos expuestos en la placa por cada 2V de tensión eléctrica el motor obtiene una velocidad angular de 1000 rpm, si se observa
-adecuadamente la Figura 2 se puede concluir que la velocidad en estado estable del motor es aproximadamente 4000 rpm, debido a que el pico
-es de 2v.
-\\\\
-Seguidamente de dicha medicion, se realizo la misma pero ahora .
-\newpage
+\begin{table}[h]
+\caption{Tensión proporcional a los valores de kp y ki}
+\centering
+\begin{tabular}{c | c}
+\hline
+  Constante & Valor de Tensión [V] \\
+  \hline
+  kp & 4.3605 \\
+  \hline
+  ki & 2.4225 \\
+  \hline
+\end{tabular}
+\label{Relacion existente entre los potenciometros de ajuste y la tension medida en el multimetro}
+\end{table}
+
+Estos valores de tensión se ajustan en los potenciómetros para entonces establecer dichas constantes adecuadamente. Con estos valores
+se realiza un modelo en \textit{SimuLink} y entonces se obtiene el siguiente diagrama de bloques de control, el cual considera las perturbaciones
+que podrían existir.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=9cm]{/home/rojiar/Pictures//LabControl/SISODesignTask.png}
+\caption{Diagrama de bloques completo con perturbaciones}
+\label{Diagrama de bloques completo con perturbaciones}
+\end{figure}
+
+Se procede con las mediciones respectivas las cuales incluyen las respuesta al escalón y a las perturbaciones.
+
+En el primer caso se mide la respuesta al escalón que tiene la planta con las constantes anteriores, la figura se muestra a continuación. \\
 
 \begin{figure}[h]
 \centering
@@ -161,26 +197,25 @@ Seguidamente de dicha medicion, se realizo la misma pero ahora .
 \label{Respuesta de velocidad del motor CD}
 \end{figure}
 
+Según los datos expuestos en la placa por cada 2V de tensión eléctrica el motor obtiene una velocidad angular de 1000 rpm, si se observa
+adecuadamente la Figura 6  se puede concluir que la velocidad en estado estable del motor es aproximadamente 4000 rpm, debido a que el pico
+es de 2V.\\
 
-
-\newpage
-
-
-
-
-
-
-
+Seguidamente de dicha medición, se realizo la misma pero ahora considerando las perturbaciones que podrían haber en todo el sistema. Si el 
+diseño fue el adecuado, entonces cuando ocurran dichas perturbaciones el regulador debería de equilibrar el sistema y devolverlo al estado
+estacionario. La figura con las perturbaciones se muestra a continuación.
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=9cm]{/home/rojiar/Pictures/LabControl/scope_r.png}
+\includegraphics[width=9cm]{/home/rojiar/Pictures/LabControl/scope_r2.png}
 \caption{Función de transferencia del Motor CD para el caso de la corriente eléctrica}
 \label{Funcion de transferencia del Motor CD para el caso de la corriente electrica}
 \end{figure}
 
+Se puede observar claramente que el sistema responde adecuadamente a las perturbaciones devolviendo el estado del mismo a la respuesta
+en estado estacionario deseada.
 
-
+\newpage
 \section{Referencias}
 
 http://www.ie.itcr.ac.cr/einteriano/control/Laboratorio
